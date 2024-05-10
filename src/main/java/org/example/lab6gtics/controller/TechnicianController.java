@@ -27,24 +27,24 @@ public class TechnicianController {
     }
 
     @GetMapping("/new")
-    public String nuevoTecnico(Model model, @ModelAttribute("Technician") Technician tecnico) {
+    public String nuevoTecnico(Model model, @ModelAttribute("tecnico") Technician tecnico) {
         return "tecnicos/editFrm";
     }
     @PostMapping("/save")
-    public String guardarTecnico(Model model, @ModelAttribute("Technician") @Valid Technician tecnico, BindingResult bindingResult,
+    public String guardarTecnico(Model model, @ModelAttribute("tecnico") @Valid Technician tecnico, BindingResult bindingResult,
                                  RedirectAttributes attr) {
 
         if(bindingResult.hasErrors()) {
             return "tecnicos/editFrm";
         }else{
-            attr.addFlashAttribute("msg","Technician" + (tecnico.getTechnicianId()==0 ? "creado":"actualizado")+"exitosamente");
+            attr.addFlashAttribute("msg","tecnico" + (tecnico.getTechnicianId()==0 ? "creado":"actualizado")+"exitosamente");
             technicianRepository.save(tecnico);
             return "redirect:/tecnico";
         }
 
     }
     @GetMapping("/edit")
-    public String editarTecnico(Model model, @ModelAttribute("Technician") Technician tecnico, @RequestParam("id") int id) {
+    public String editarTecnico(Model model, @ModelAttribute("tecnico") Technician tecnico, @RequestParam("id") int id) {
         Optional<Technician> optional = technicianRepository.findById(id);
 
         if(optional.isPresent()){

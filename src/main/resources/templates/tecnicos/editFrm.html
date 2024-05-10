@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <nav th:replace="~{gticsf :: gticsf( activeTab = 'Technician')}"></nav>
+    <nav th:replace="gticsf :: gticsf( activeTab = 'Technician')"></nav>
     <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
             <h2>Editar Tecnico</h2>
@@ -17,26 +17,28 @@
                 <input th:field="*{technicianId}" type="hidden"/>
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control" th:field="*{firstName}" th:classappend="${#fields.hasErrors('firstname')?'is-invalid':''}"/>
-                    <div class="invalid-feetback" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstName}"></div>
+                    <input type="text" class="form-control" th:field="*{firstName}" th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}"/>
+                    <div class="invalid-feetback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Apellido</label>
-                    <input type="text" class="form-control" th:field="*{lastName}"/>
+                    <input type="text" class="form-control" th:field="*{lastName}" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"/>
+                    <div class="invalid-feetback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">DNI</label>
-                    <input type="text" class="form-control"
-                           th:field="*{dni}"/>
+                    <input type="text" class="form-control" th:field="*{dni}" th:classappend="${#fields.hasErrors('dni')?'is-invalid':''}"/>
+                    <div class="invalid-feetback" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Edad</label>
-                    <input type="text" class="form-control" th:field="*{age}"/>
+                    <input type="text" class="form-control" th:field="*{age}" th:classappend="${#fields.hasErrors('age')?'is-invalid':''}"/>
+                    <div class="invalid-feetback" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
                 </div>
 
-                <a th:href="@{'/tecnico'}" class="btn btn-danger">Cancelar</a>
+                <a href="/tecnico" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-primary"
                         th:text="${tecnico.technicianId==0? 'Guardar':'Actualizar'}">Actualizar
                 </button>

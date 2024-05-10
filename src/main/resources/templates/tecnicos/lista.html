@@ -11,7 +11,7 @@
     <div class="container px-4 pb-5">
         <nav th:replace="gticsf :: gticsf( activeTab = 'Technician')"></nav>
         <h1 class="pb-2 border-bottom">Lista de Tecnicos</h1>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/tecnico/new'}">Nuevo Técnico</a>
+        <a class="btn btn-primary mt-4 mb-4" href="/tecnico/new">Nuevo Técnico</a>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
         <table class="table">
             <thead>
@@ -28,13 +28,13 @@
             <tbody>
             <tr th:each="tecnico, info : ${listaTecnicos}">
                 <td th:text="${info.index + 1}"></td>
-                <td th:text="${tecnico.firstName} + ' ' +${tecnico.lastName}"></td>
-                <td th:text="${tecnico.dni}"></td>
-                <td th:text="${tecnico.phone}"></td>
-                <td th:text="${tecnico.age}"></td>
-                <td><a class="btn btn-primary" th:href="@{'/tecnico/edit' + '?id=' + ${tecnico.technicianId}}">Editar</a>
+                <td th:text="${tecnico.getFirstName()} + ' ' +${tecnico.getLastName()}"></td>
+                <td th:text="${tecnico.getDni()}"></td>
+                <td th:text="${tecnico.getPhone()}"></td>
+                <td th:text="${tecnico.getAge()}"></td>
+                <td><a class="btn btn-primary" th:href="@{'/tecnico/edit' + '?id=' + ${tecnico.getTechnicianId()}}">Editar</a>
                 </td>
-                <td><a class="btn btn-danger" th:href="@{'/tecnico/delete' + '?id=' + ${tecnico.technicianId}}">Borrar</a>
+                <td><a class="btn btn-danger" th:href="@{'/tecnico/delete' + '?id=' + ${tecnico.getTechnicianId()}}">Borrar</a>
                 </td>
             </tr>
             </tbody>
